@@ -186,7 +186,8 @@ document.addEventListener("DOMContentLoaded", async function() {
                 card.childNodes[5].addEventListener('click', function(){
                     addFavour(card.childNodes[5].parentElement)//se non la mettevo dentro una funzione anonima non funzionava
                 })//aggiungo l'ascoltatore al bottone e nella funzione come parametro l'indirizzo del padre (cioè la carta)
-                card.childNodes[3].addEventListener('click', function(){
+                card.childNodes[3].addEventListener('click', function(event){
+                    event.preventDefault();//perchè mi tornava in cima al click
                     addToTrolley(card.childNodes[3].parentElement);
                 })
             });
