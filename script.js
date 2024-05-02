@@ -106,14 +106,81 @@ function addToTrolley(punctCard) {
     textTotal.textContent = `${totalCost.toFixed(2)}€`;
      console.log(price);
 }
+//////////////////////////////////////////////////////////////////////////
+// Funzione di RESET TOTALE.........
+function pulisci() {
+    // Resetta i carrelli e i preferiti
+    totalTrolley = [];
+    libriPreferiti = [];
+
+    // Pulisce il DOM
+    workStation.innerHTML = '';
+
+    // ritampo tutto
+    renderingDom(jsonLibri, workStation);
+
+    // Resetta i contatori
+    document.getElementById("contatore_articoli_carrello").textContent = "0";
+    document.getElementById("contatore_articoli_carrello").parentElement.parentElement.lastChild.textContent = "0,00€";
+    document.getElementById("contatore_articoli_preferiti").textContent = "0";
+    
+    // RIcollega i listener
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', startHover);
+        card.addEventListener('mouseleave', stopHover);
+        card.childNodes[5].addEventListener('click', function() {
+            addFavour(card.childNodes[5].parentElement);
+        });
+        card.childNodes[3].addEventListener('click', function() {
+            addToTrolley(card.childNodes[3].parentElement);
+        });
+    });
+}
+//////////////////////////////////////////////////////////////////////////
+// Funzione di ricerca lettera x lettera.........
+function search( string ) {
+     // Pulisce il DOM
+     workStation.innerHTML = '';
+     jsonLibri.forEach(libro => {
+        if( libro.title.toLowerCase().includes( string.toLowerCase() ) ){
+            workStation.innerHTML += 
+            `
+                <div class="card card_custum position-relative" style="width: 15rem; height: 28rem">
+                    <img style="height: 18rem;" src="${libro.img}" class="card-img-top" alt="${libro.title}">
+                    <a href="#" class="btn btn-primary add_carrello">Aggiungi al carrello</a>
+                    <a href="#" class="btn btn-primary preferiti"><i class="bi bi-heart-fill"></i></a>
+                    <div class="card-body">
+                        <h5 class="card-title">${libro.title}</h5>
+                        <p class="card-text">Prezzo:${libro.price}€</p>
+                    </div>
+                </div>
+            `;
+            // RIcollega i listener
+                const cards = document.querySelectorAll('.card');
+                cards.forEach(card => {
+                    card.addEventListener('mouseenter', startHover);
+                    card.addEventListener('mouseleave', stopHover);
+                    card.childNodes[5].addEventListener('click', function() {
+                        addFavour(card.childNodes[5].parentElement);
+                    });
+                    card.childNodes[3].addEventListener('click', function() {
+                        addToTrolley(card.childNodes[3].parentElement);
+                    });
+                });
+        } 
+     });
+     
+}
 //........................................................................................................................................................
+//--------PASSAGGI ESECUZIONE PROGAMMA --------//
 document.addEventListener("DOMContentLoaded", async function() {
     try {
             const data = await requestFetch(URL);
             jsonLibri.push(...data);
             await renderingDom(jsonLibri, workStation);
             const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
+            await cards.forEach(card => {
                 card.addEventListener('mouseenter', startHover);
                 card.addEventListener('mouseleave', stopHover);
                 card.childNodes[5].addEventListener('click', function(){
@@ -122,9 +189,20 @@ document.addEventListener("DOMContentLoaded", async function() {
                 card.childNodes[3].addEventListener('click', function(){
                     addToTrolley(card.childNodes[3].parentElement);
                 })
-            // console.log(card.childNodes[5].parentElement);
             });
-            
+            //puntatore e funzione a icona pulisci..............
+            const punctClean = document.getElementById("pulisci");
+            punctClean.addEventListener("click", function(){
+                pulisci();//chiamata
+            })
+            /////////////////////////////////////////////////////
+            //puntatore e funzione a barra di ricerca..............
+            const punctSearchBar = document.getElementById("barra_ricerca");
+            punctSearchBar.addEventListener("input", function(){
+                const string = punctSearchBar.value;
+                search(string);//chiamata
+            })
+            console.log(punctClean);
     } 
     catch (error) {
         console.error("Errore:", error);
