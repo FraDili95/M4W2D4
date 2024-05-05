@@ -10,12 +10,14 @@
     <title>M4W2D4 EpicBook</title>
 </head>
 <body>
-    <header class="container-fluid align-content-center" id="nav_mother">
+    <header class="container-fluid align-content-center " id="nav_mother">
         <nav class="row">
+            <!--1-->
             <div class=" col-lg-3 d-flex justify-content-center position-relative ">
                 <img class="img-fluid " src="Assets/epicode_logo.png" alt="logo"><!--LOGO-->
                 <h1>EPIBOOK</h1><!--TITOLO-->
             </div>
+            <!--2-->
             <div class="col-lg-6 d-flex justify-content-center  ">
                 <div class=" d-flex align-content-center align-items-center w-100 ms-5 position-relative ">
                     <input type="text" placeholder="     CERCA IL TUO LIBRO" id="barra_ricerca" class="h-50  w-100 ">
@@ -24,20 +26,41 @@
                     </div>
                 </div>
             </div>
+            <!--3-->
             <div class="col-lg-3 d-flex justify-content-evenly align-items-center icon_rx">
                 <i class="bi bi-stars" id="pulisci"></i>
-                <i class="bi bi-arrow-through-heart-fill  position-relative">
-                    <div class="contatore_articoli position-absolute d-flex justify-content-center align-items-center ">
-                        <span id="contatore_articoli_preferiti">0</span>
-                    </div>
-                </i>
-                <i class="bi bi-cart-fill position-relative ">
-                    <div class="contatore_articoli position-absolute d-flex justify-content-center align-items-center ">
-                            <span id="contatore_articoli_carrello">0</span>
-                    </div>
-                    0,00€
-                </i>
+                <!------------------------------------------------------------>
+                <!---------------------dropdown_preferiti--------------------->
+                <div class="dropdown ">
+                    
+                    <i class="bi bi-arrow-through-heart-fill  position-relative" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+                        <div class="contatore_articoli position-absolute d-flex justify-content-center align-items-center ">
+                            <span id="contatore_articoli_preferiti">0</span>
+                        </div>
+                    </i>
+
+                    <ul class="dropdown-menu" id="dropdown_preferiti">
+                
+                    </ul>
+                  </div>
+               
+                <!------------------------------------------------------------>
+                <!---------------------dropdown_carrello---------------------->
+                <div class="dropdown">
+                    <i class="bi bi-cart-fill position-relative" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+                        <div class="contatore_articoli position-absolute d-flex justify-content-center align-items-center ">
+                                <span id="contatore_articoli_carrello">0</span>
+                        </div>
+                        0,00€
+                    </i>
+                    
+                    <ul class="dropdown-menu" id="dropdown_carrello">
+                    
+                    </ul>
+                </div>
+
             </div>
+            <!---->
         </nav>
     </header>
     <p class="border-bottom border-1"></p><!--linea divisoria-->

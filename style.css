@@ -3,6 +3,9 @@
 ---------------------------------*/
 #nav_mother {
     min-height: 10rem;
+    max-height: 3rem;
+    z-index: 222;
+    transition: all 2s ease-in-out; /* Transizione graduale */
 }
 #nav_mother nav img{
     max-height: 5rem;
@@ -76,6 +79,7 @@
     padding: 0.3rem 0 !important;
 }
 
+
 /*----------------------------------
 //////////MAIN///////////////////
 ---------------------------------*/
@@ -147,8 +151,50 @@ a.btn.btn-primary.preferiti.hoverClass:hover{
     color: #CB2478;
 }
 
-
-::-webkit-scrollbar {
+/*--------------------------------------------*/
+/*-----------BARRA SCORRIMENTO CUSTOM--------*/
+::-webkit-scrollbar {/*backgraund della barra*/
     background-color: rgba(51, 2, 140,0.4);
   }
-  
+  ::-webkit-scrollbar-thumb {/*colore indicatore barra*/
+    background: rgba(51, 2, 140,0.6);
+    border-radius: 15px; 
+}
+::-webkit-scrollbar-thumb:hover {/*colore indicatore barra se puntato*/
+    background: rgba(51, 2, 140);
+}
+
+
+
+/*------------AGGIUNTE SUCCESSIVE (DROPDOWN)*/                  
+.dropdown-menu{
+    border: 0!important;
+    border-top: 2px solid rgba(51, 2, 140) !important ;
+    border-radius: 0 !important ;
+    transform: translate3d(-110px, 79.2px, 0px) !important;
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    color: white !important;
+}
+#dropdown_carrello.dropdown-menu{
+    transform: translate3d(22px, 79.2px, 0px) !important;
+}
+.dropdown-menu li{
+    padding: 1px 0 !important;
+    border-bottom: 1px solid white !important;
+}
+
+.dropdown-menu li > img{
+  max-height: 2em !important;
+  margin: 0 !important;
+  margin-left: 1em !important;
+}
+
+  .dropdown-menu li > span {
+   
+    margin: 0 0.5rem !important;
+    white-space: nowrap;
+}
+.drop_i:hover{
+    font-size: 110% !important;
+    color:#CB2478;
+}
